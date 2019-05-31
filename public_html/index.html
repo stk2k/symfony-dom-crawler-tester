@@ -59,7 +59,7 @@ $(document).ready( function(){
                 alert(response.message);
             }
             else{
-                $('#result').val(response.data.result);
+                $('#result').val(response.data.result.join("---------------------------------------------------\n"));
             }
         })
     });
