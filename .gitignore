@@ -5,4 +5,3 @@ sample/cache/*
 !.gitkeep
 cache/*
 logs/*
-env/*
