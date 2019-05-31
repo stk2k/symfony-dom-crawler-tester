@@ -1,0 +1,27 @@
+{
+  "name": "stk2k/symfony-dom-crawler-tester",
+  "description": "Symfony/DomCrawler Live Tester",
+  "keywords": ["PHP","DomCrawler","Calgamo framework"],
+  "homepage": "https://github.com/stk2k/symfony-dom-crawler-tester",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Katsuki Shuto",
+      "email": "stk2k@sazysoft.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.0.0",
+    "ext-json": "*",
+    "ext-dom": "*",
+    "symfony/dom-crawler": "3.2.*",
+    "symfony/css-selector": "3.2.*",
+    "calgamo/framework": "~0.3",
+    "calgamo/http": "~0.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.3.0"
+  }
+}

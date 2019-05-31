@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form>
+    <div class="row col-md-8 col-md-offset-1">
+
+        <h2>Symfony/DomCrawler Live Tester</h2>
+
+        <dl class="dl-horizontal">
+            <dt><label for="html">HTML</label></dt>
+            <dd>
+                <textarea id="html" name="html" class="form-control" placeholder="Input Target HTML Here." rows="20"></textarea>
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt><label for="selector">Selector</label></dt>
+            <dd>
+                <input type="text" id="selector" name="selector" class="form-control" value="" placeholder="Input DomCrawler Filter Here.">
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt></dt>
+            <dd>
+                <button type="button" id="btn" class="btn btn-primary">Filter</button>
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt><label for="result">Result</label></dt>
+            <dd>
+                <textarea id="result" name="result" class="form-control" rows="6" readonly></textarea>
+            </dd>
+        </dl>
+    </div>
+</form>
+<script>
+$(document).ready( function(){
+    $('#btn').on('click', function(){
+        $.ajax({
+            url:'/api/crawler/filter',
+            type:'POST',
+            data:{
+                'html':$('#html').val(),
+                'selector':$('#selector').val()
+            }
+        }).done( (response) => {
+            //console.log('json', json);
+            //let response = JSON.parse(json);
+            console.log('response', response);
+            if (response.code < 0){
+                alert(response.message);
+            }
+            else{
+                $('#result').val(response.data.result);
+            }
+        })
+    });
+});
+</script>
+</body>
+</html>
