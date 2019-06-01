@@ -2,6 +2,7 @@
 namespace SymfonyDomCrawlerTester\App\Api\Responder;
 
 use DOMDocument;
+use DOMNode;
 
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -19,7 +20,7 @@ class CrawlerApiResponder extends ApiResponder
 
         $result = [];
         foreach($crawler->filter($selector)as $item){
-            /** @var \DOMNode $item */
+            /** @var DOMNode $item */
             $result[] = $this->outerHTML($item);
         };
 
@@ -32,6 +33,7 @@ class CrawlerApiResponder extends ApiResponder
     function outerHTML($e) {
         $doc = new DOMDocument();
         $doc->appendChild($doc->importNode($e, true));
-        return $doc->saveHTML();
+        $html = $doc->saveHTML();
+        return $value = mb_convert_encoding($html, 'UTF-8', 'HTML-ENTITIES');
     }
 }

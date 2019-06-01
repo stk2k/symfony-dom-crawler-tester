@@ -61,7 +61,7 @@ class ApiResponder
         ];
         self::sendApiHeader();
 
-        $json = json_encode($res);
+        $json = json_encode($res, JSON_UNESCAPED_UNICODE);
         echo $json;
 
         if (!empty($json)){
